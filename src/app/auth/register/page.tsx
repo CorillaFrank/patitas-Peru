@@ -8,7 +8,7 @@ function RegisterPage() {
       <Container size="1" height="100%" className="p-3 md:p-0 ">
         <Flex className="h-screen w-full items-center">
           <Card className="w-full p7">
-            <Heading>Registrarse</Heading>
+            <Heading>Regrístrate</Heading>
             <SigninUp />
             <Flex justify="between" my="4">
               <Text>Cuenta Nueva</Text>

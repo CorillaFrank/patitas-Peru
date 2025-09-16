@@ -8,13 +8,13 @@ function loginPage() {
       <Container size="1" height="100%" className="p-3 md:p-0 ">
         <Flex className="h-screen w-full items-center">
           <Card className="w-full p7">
-            <Heading>Sing in</Heading>
+            <Heading className="text-center ">Iniciar Sesion</Heading>
             <SigninFrom />
             <Flex justify="between" my="4">
-              <Text>No tengo una cuenta?</Text>
+              <Text className="text-xs">No tienes una cuenta?</Text>
               <Link asChild>
                 <NavLink href="/auth/register" passHref>
-                  Registrate!
+                  Crear Cuenta
                 </NavLink>
               </Link>
             </Flex>

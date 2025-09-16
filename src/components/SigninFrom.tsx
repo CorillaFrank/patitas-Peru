@@ -84,7 +84,7 @@ function SigninFrom() {
             {errors.password.message}
           </Text>
         )}
-        <Button type="submit">Sign in</Button>
+        <Button type="submit">Iniciar Sesion</Button>
       </Flex>
     </form>
   );
