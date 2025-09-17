@@ -4,7 +4,12 @@ import { EnvelopeClosedIcon, LockClosedIcon } from "@radix-ui/react-icons";
 import { useForm, Controller } from "react-hook-form";
 //el controller es quien va conterner los inputs que nosotros queremos validar y capturar los datos
 //Solo se usa cuando el input es creado por nosotros si no por un tercero somo TextField de radix
+import { supabase } from "@/lib/supabaseClient";
+import { useRouter } from "next/navigation";
 function SigninFrom() {
+  const router = useRouter();
+  //usamos useForm para manejar los formularios
+  //control es quien va a controlar los datos del formulario
   const {
     control,
     handleSubmit,
@@ -12,9 +17,25 @@ function SigninFrom() {
   } = useForm({
     values: { email: "", password: "" },
   });
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
     //lo que hara handleSubmit es enviarnos los datos del formulario que estemos escribiendo
-    console.log(data);
+    const { email, password } = data;
+    const { data: user, error } = await supabase
+      .from("users")
+      .select("*")
+      .eq("email", email)
+      .eq("password", password)
+      .single();
+
+    if (error) {
+      alert("Error al iniciar sesion, usuario o contraseña incorrecta");
+      return;
+    }
+    if (user.role === "admin") {
+      router.push("/admin");
+    } else {
+      router.push("/usuario");
+    }
   });
   console.log(errors);
   return (

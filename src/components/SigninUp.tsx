@@ -6,15 +6,27 @@ import {
   PersonIcon,
 } from "@radix-ui/react-icons";
 import { useForm, Controller } from "react-hook-form";
-
+import { supabase } from "@/lib/supabaseClient";
 function SigninUp() {
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({ values: { name: "", email: "", password: "" } });
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = handleSubmit(async(data) => {
+    const {name,email,password}=data;
+    const {error} = await supabase.from("users").insert([
+      {
+         name, email, password,
+         role: "user",  //podemos agregar un avatar
+      }
+    ])
+    if(error){
+      console.error("Error de registrado usuario",error.message);
+      alert("Error al registrar usuario");
+    }else{
+      alert("Usuario registrado con exito");
+    }
   });
   console.log(errors);
   return (

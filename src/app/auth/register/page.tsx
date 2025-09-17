@@ -11,9 +11,9 @@ function RegisterPage() {
             <Heading>Regrístrate</Heading>
             <SigninUp />
             <Flex justify="between" my="4">
-              <Text>Cuenta Nueva</Text>
+              <Text className="text-xs"> Nueva Cuenta</Text>
               <Link asChild>
-                <NavLink href="/auth/login" passHref>
+                <NavLink href="/auth/login" passHref className="text-xs">
                   Ya tengo una cuenta!
                 </NavLink>
               </Link>
